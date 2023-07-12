@@ -11,10 +11,8 @@ $(call inherit-product-if-exists, external/google-fonts/rubik/fonts.mk)
 PRODUCT_PACKAGES += \
     Aperture \
     Eleven \
-    Etar \
     Profiles \
-    Recorder \
-    Seedvault
+    Recorder
 
 ifneq ($(TARGET_EXCLUDES_AUDIOFX),true)
 PRODUCT_PACKAGES += \
