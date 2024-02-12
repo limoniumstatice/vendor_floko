@@ -72,6 +72,23 @@ aapt_version_code {
 }
 
 soong_config_module_type {
+    name: "camera_override_format_from_reserved",
+    module_type: "cc_defaults",
+    config_namespace: "lineageGlobalVars",
+    bool_variables: ["camera_override_format_from_reserved"],
+    properties: ["cppflags"],
+}
+
+camera_override_format_from_reserved {
+    name: "camera_override_format_from_reserved_defaults",
+    soong_config_variables: {
+        camera_override_format_from_reserved: {
+            cppflags: ["-DTARGET_CAMERA_OVERRIDE_FORMAT_FROM_RESERVED"],
+        },
+    },
+}
+
+soong_config_module_type {
     name: "gralloc_10_usage_bits",
     module_type: "cc_defaults",
     config_namespace: "lineageGlobalVars",
@@ -84,6 +101,23 @@ gralloc_10_usage_bits {
     soong_config_variables: {
         additional_gralloc_10_usage_bits: {
             cppflags: ["-DADDNL_GRALLOC_10_USAGE_BITS=%s"],
+        },
+    },
+}
+
+soong_config_module_type {
+    name: "gralloc_handle_custom_content_md_reserved_size",
+    module_type: "cc_defaults",
+    config_namespace: "lineageGlobalVars",
+    bool_variables: ["gralloc_handle_has_custom_content_md_reserved_size"],
+    properties: ["export_cflags"],
+}
+
+gralloc_handle_custom_content_md_reserved_size {
+    name: "gralloc_handle_has_custom_content_md_reserved_size_defaults",
+    soong_config_variables: {
+        gralloc_handle_has_custom_content_md_reserved_size: {
+            export_cflags: ["-DGRALLOC_HANDLE_HAS_CUSTOM_CONTENT_MD_RESERVED_SIZE"],
         },
     },
 }
@@ -340,6 +374,30 @@ surfaceflinger_qcom_extensions {
         qcom_display_headers_namespace: {
             cppflags: ["-DQCOM_UM_FAMILY"],
             header_libs: ["//%s:display_intf_headers"],
+        },
+    },
+}
+
+soong_config_module_type {
+    name: "qti_vibrator_hal",
+    module_type: "cc_defaults",
+    config_namespace: "lineageQcomVars",
+    bool_variables: ["qti_vibrator_use_effect_stream"],
+    value_variables: ["qti_vibrator_effect_lib"],
+    properties: [
+        "cppflags",
+        "shared_libs",
+    ],
+}
+
+qti_vibrator_hal {
+    name: "qti_vibrator_hal_defaults",
+    soong_config_variables: {
+        qti_vibrator_use_effect_stream: {
+            cppflags: ["-DUSE_EFFECT_STREAM"],
+        },
+        qti_vibrator_effect_lib: {
+            shared_libs: ["%s"],
         },
     },
 }

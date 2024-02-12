@@ -9,10 +9,14 @@ $(call inherit-product-if-exists, external/google-fonts/rubik/fonts.mk)
 
 # Apps
 PRODUCT_PACKAGES += \
-    Aperture \
     Eleven \
     Profiles \
     Recorder
+
+ifneq ($(PRODUCT_NO_CAMERA),true)
+PRODUCT_PACKAGES += \
+    Aperture
+endif
 
 ifneq ($(TARGET_EXCLUDES_AUDIOFX),true)
 PRODUCT_PACKAGES += \
